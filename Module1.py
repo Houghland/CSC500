@@ -19,4 +19,4 @@ print("Enter a second number:", end='')
 num2=float(input())
 
 print("Multiplying", num1, "by", num2, ":", (num1 * num2))
-print("Dividing", num1, "by", num2, "is:", (num1 - num2))
+print("Dividing", num1, "by", num2, "is:", (num1 / num2))
