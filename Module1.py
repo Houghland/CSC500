@@ -14,7 +14,6 @@ print("Part 2")
 print('Enter a number:', end='')
 num1=float(input())
 
-print()
 print("Enter a second number:", end='')
 num2=float(input())
 
