@@ -1,4 +1,4 @@
-#Part 2 Addition and Subtraction
+#Part 1 Addition and Subtraction
 print("Part1")
 print('Enter a number:', end='')
 num1=float(input())
