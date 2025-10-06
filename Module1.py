@@ -1,6 +1,6 @@
 #Part 1 Addition and Subtraction
 print("Part1")
-print('Enter a number:', end='')
+print("Enter a number:", end='')
 num1=float(input())
 
 print("Enter a second number:", end='')
@@ -11,7 +11,7 @@ print("Subtracting", num1, "by", num2, "is:", (num1 - num2))
 
 #Part 2 Multiplication and Division
 print("Part 2")
-print('Enter a number:', end='')
+print("Enter a number:", end='')
 num1=float(input())
 
 print("Enter a second number:", end='')
