@@ -1,0 +1,23 @@
+#heart rates over period of time
+time = ["6:00 AM", "7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM",
+         "11:00 AM", "12:00 PM"]
+
+heart_rates = [72, 78, 85, 90, 88, 76, 70]
+
+# Display all heart rate readings with their times
+print("Heart Rate from 6 AM - 12 PM:")
+for i in range(len(time)):
+    print(time[i], "-", heart_rates[i], "bpm")
+
+# Calculate average, highest, and lowest heart rate
+avg = sum(heart_rates) / len(heart_rates)
+highest = max(heart_rates)
+lowest = min(heart_rates)
+
+# Find the times of the highest and lowest readings
+highest_time = time[heart_rates.index(highest)]
+lowest_time = time[heart_rates.index(lowest)]
+
+print("\nAverage Heart Rate:", round(avg, 1), "bpm")
+print("Highest Heart Rate:", highest, "bpm at", highest_time)
+print("Lowest Heart Rate:", lowest, "bpm at", lowest_time)
