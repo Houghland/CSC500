@@ -4,7 +4,7 @@ print("Enter the charge for your food:")
 food_charge = float(input())
 
 #Check if number is <=0
-while food_charge<=0 and food_charge=='':
+while food_charge<=0:
     print("Your food charge cannot be less than or equal to 0\nPlease enter the amount:")
     food_charge = float(input())
 tip = food_charge * 0.18
