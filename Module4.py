@@ -1,44 +1,42 @@
-# item class
-class item:
-    item_name = "none"
-    item_price = 0
-    item_quantity = 0
-
-    def print_item_cost(item):
-        total_cost = item.item_price * item.item_quantity
-        print(f"{item.item_name} {item.item_quantity:.0f} @ ${item.item_price:.2f} = ${total_cost:.2f}")
-    
+#Module 4 Portfolio Milestone
+#ItemToPurchase class
+class ItemToPurchase:
+    ItemToPurchase_name = "none"
+    ItemToPurchase_price = 0
+    ItemToPurchase_quantity = 0
+    #Method to print out ItemToPurchase cost
+    def print_ItemToPurchase_cost(ItemToPurchase):
+        total_cost = ItemToPurchase.ItemToPurchase_price * ItemToPurchase.ItemToPurchase_quantity
+        print(f"{ItemToPurchase.ItemToPurchase_name} {ItemToPurchase.ItemToPurchase_quantity:.0f} @ ${ItemToPurchase.ItemToPurchase_price:.2f} = ${total_cost:.2f}")
+    #Method to validate user input
     def valid_input(prompt, value_type, condition):
         value = value_type(input(prompt))
         while not condition(value):
-            value = value_type(input("Please enter a valid value:"))
+            value = value_type(input("Please enter a valid value: "))
         return value
 
-
-def print_total_cost(item1, item2):
-        total = ((item1.item_price * item1.item_quantity) + (item2.item_price * item2.item_quantity))
+#Calculate and print total cost of both ItemToPurchases
+def print_total_cost(ItemToPurchase1, ItemToPurchase2):
+        total = ((ItemToPurchase1.ItemToPurchase_price * ItemToPurchase1.ItemToPurchase_quantity) + (ItemToPurchase2.ItemToPurchase_price * ItemToPurchase2.ItemToPurchase_quantity))
         print(f"\nTotal cost: ${total:.2f}")
 
 #define objects
-item1 = item()
-item2 = item()
+ItemToPurchase1 = ItemToPurchase()
+ItemToPurchase2 = ItemToPurchase()
 
-
-#get inputs
+#get inputs from user
 print("Item 1")
-item1.item_name = item.valid_input("Enter the item name: ", str, lambda x: x.strip() != "")
-item1.item_price = item.valid_input("Enter the item price: ", float, lambda x: x > 0)
-item1.item_quantity = item.valid_input("Enter the item quantity: ", int, lambda x: x > 0)
-
+ItemToPurchase1.ItemToPurchase_name = ItemToPurchase.valid_input("Enter the item name: ", str, lambda x: x.strip() != "")
+ItemToPurchase1.ItemToPurchase_price = ItemToPurchase.valid_input("Enter the item price: ", float, lambda x: x > 0)
+ItemToPurchase1.ItemToPurchase_quantity = ItemToPurchase.valid_input("Enter the item quantity: ", int, lambda x: x > 0)
 
 print("Item 2")
-item2.item_name = item.valid_input("Enter the item name: ", str, lambda x: x.strip() != "")
-item2.item_price = item.valid_input("Enter the item price: ", float, lambda x: x > 0)
-item2.item_quantity = item.valid_input("Enter the item quantity: ", int, lambda x: x > 0)
+ItemToPurchase2.ItemToPurchase_name = ItemToPurchase.valid_input("Enter the item name: ", str, lambda x: x.strip() != "")
+ItemToPurchase2.ItemToPurchase_price = ItemToPurchase.valid_input("Enter the item price: ", float, lambda x: x > 0)
+ItemToPurchase2.ItemToPurchase_quantity = ItemToPurchase.valid_input("Enter the item quantity: ", int, lambda x: x > 0)
 
-
-#calculations
+#Print costs
 print("Total Cost:\n")
-item1.print_item_cost()
-item2.print_item_cost()
-print_total_cost(item1, item2)
+ItemToPurchase1.print_ItemToPurchase_cost()
+ItemToPurchase2.print_ItemToPurchase_cost()
+print_total_cost(ItemToPurchase1, ItemToPurchase2)
