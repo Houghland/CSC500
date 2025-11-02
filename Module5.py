@@ -31,15 +31,12 @@ print(f"Total inches of Rainfall: {total_rainfall:.2f} inches")
 print(f"Average Rainfall per month: {average_rainfall:.2f} inches")
 
 # Part 2
-# CSU Global books_purchasedtore
-# 0 books_purchased, they earn 0 points.
-# 2 books_purchased, they earn 5 points.
-# 4 books_purchased, they earn 15 points.
-# 6 books_purchased, they earn 30 points.
-# 8 or more books_purchased, they earn 60 points.
-print("\nCSU Gloabl books_purchasedtore Rewards")
-books_purchased = valid_input("Enter the Number of books_purchased Purchased: ", int, lambda x: x >= 0)
+# CSU Global bookstore
 
+print("\n** CSU Gloabl Bookstore Rewards **")
+books_purchased = valid_input("Enter the Number of Books Purchased this Month: ", int, lambda x: x >= 0)
+
+#Calculate points - include in between #'s
 if books_purchased == 0:
     points = 0
 elif books_purchased == 2 or books_purchased == 3:
