@@ -128,8 +128,7 @@ def print_menu(cart):
         elif option == 'q':
             break
 
-#Main 
-#def main():
+#Start 
 customer_name = input("Enter customer name: ")
 current_date = input("Enter the date: ")
 print("\nCustomer name: ", customer_name)
@@ -138,5 +137,3 @@ print("Today's date: ", current_date)
 cart = ShoppingCart(customer_name, current_date)
 print_menu(cart)
 
-#if __name__ == "__main__":
-#   main()
