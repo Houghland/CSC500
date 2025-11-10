@@ -12,7 +12,7 @@ class ItemToPurchase:
 
     def print_item_description(item):
         print(f"{item.item_name}: {item.item_description}")
-
+#check that input is valid/not empty
     def valid_input(prompt, value_type, condition):
         value = value_type(input(prompt))
         while not condition(value):
@@ -25,6 +25,12 @@ class ShoppingCart:
         cart.customer_name = customer_name
         cart.current_date = current_date
         cart.cart_items = []
+#check that input is valid/not empty
+    def valid_input(prompt, value_type, condition):
+        value = value_type(input(prompt))
+        while not condition(value):
+            value = value_type(input("Please enter a valid value: "))
+        return value
 # Add items to cart
     def add_item(cart, item):
         cart.cart_items.append(item)
@@ -98,8 +104,8 @@ def print_menu(cart):
 
         if option == 'a':
             print("Add Item to Cart")
-            name = input("Enter the item name:\n")
-            description = input("Enter the item description:\n")
+            name = ShoppingCart.valid_input("Enter the item name:\n", str, lambda x: x.strip() != "")
+            description = ShoppingCart.valid_input("Enter the item description:\n", str, lambda x: x.strip() != "")
             price = ItemToPurchase.valid_input("Enter the item price: ", float, lambda x: x > 0)
             quantity = ItemToPurchase.valid_input("Enter the item quantity: ", int, lambda x: x > 0)
             new_item = ItemToPurchase(name, price, quantity, description)
@@ -107,12 +113,12 @@ def print_menu(cart):
 
         elif option == 'r':
             print("Remove Item from Cart: ")
-            name = input("Enter item to remove:\n")
+            name = ShoppingCart.valid_input("Enter item to remove:\n", str, lambda x: x.strip() != "")
             cart.remove_item(name)
 
         elif option == 'c':
             print("Change Item Quantity: ")
-            name = input("Enter the item:\n")
+            name = ShoppingCart.valid_input("Enter the item to change:\n", str, lambda x: x.strip() != "")
             quantity = ItemToPurchase.valid_input("Enter the item quantity: ", int, lambda x: x > 0)
             modified_item = ItemToPurchase(item_name=name, item_quantity=quantity)
             cart.modify_item(modified_item)
@@ -129,8 +135,9 @@ def print_menu(cart):
             break
 
 #Start 
-customer_name = input("Enter customer name: ")
-current_date = input("Enter the date: ")
+#Get valid name and date
+customer_name = ShoppingCart.valid_input("Enter customer name: ", str, lambda x: x.strip() != "")
+current_date = ShoppingCart.valid_input("Enter the date: ", str, lambda x: x.strip() != "")
 print("\nCustomer name: ", customer_name)
 print("Today's date: ", current_date)
 
