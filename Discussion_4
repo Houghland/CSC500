@@ -4,4 +4,15 @@ num_neg = 0
 for temp in temperatures:  
     if temp < 0: 
         num_neg += 1 
-print("There are", num_neg, "days this week of negative degree tamperatures")
+print("There are", num_neg, "days this week of negative degree tEmperatures")
+
+seating_capacity = 17 
+while seating_capacity > 0: 
+    print(f"Seat sold but seats are still available!") 
+    seating_capacity -= 1 
+    print("Only", seating_capacity, "Seats left!")
+print("Sold out!")
+
+num_contestants = 1000 
+for num_contestants in range(1, 11): 
+    print(f"You're a winner {num_contestants}!")

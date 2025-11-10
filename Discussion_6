@@ -1,0 +1,17 @@
+
+#create list
+grades = [94, 90, 87, 35, 62] 
+grades.append(92) 
+grades.insert(2, 80)  
+grades[3] = 75 
+grades.remove(35) 
+del grades[4] 
+print(grades)
+ 
+
+#Example of a dictionary: 
+student = { "name": "Dan", "major": "AI/ML", "year":"Sophomore"} 
+student["gpa"] = 3.4 
+student["major"] = 'Comp Sci'
+del student["year"]  
+print(student)
