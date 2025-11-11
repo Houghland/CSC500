@@ -62,7 +62,7 @@ class ShoppingCart:
         return total_cost
 
     def print_total():
-        print(ShoppingCart.customer_name, "'s Shopping Cart -", ShoppingCart.current_date)
+        print("{ShoppingCart.customer_name}'s Shopping Cart -", ShoppingCart.current_date)
         total_items = ShoppingCart.get_num_items_in_cart()
         print("Number of Items: ", total_items)
         if len(ShoppingCart.cart_items) == 0:
@@ -108,38 +108,41 @@ def print_menu(ShoppingCart):
             print("Remove Item from Cart: ")
             name = input("Enter item to remove:\n")
             ShoppingCart.remove_item(name)
-
+        #Options to update description/price/quantity
         elif option == 'c':
             print("Change Item")
             name = input("Enter the item:\n")
-            change = ""
-            while change != 's':
-                print("Which do you want to change:")
-                print("a - Description")
-                print("b - Price")
-                print("c - Quantity")
-                print("s - Save Changes")
+            #verify if item exists - if it does, update
+            for item in ShoppingCart.cart_items:
+                while item.item_name != name:
+                    name = input("Item not found. Please enter valid item:")
+                if item.item_name == name:
+                    change = ""
+                    while change != 's':
+                        print("Which do you want to change:")
+                        print("a - Description")
+                        print("b - Price")
+                        print("c - Quantity")
+                        print("s - Save Changes")
 
-                change = input("\nChoose an option:\n").lower()
-
-                while change not in ['a', 'b', 'c', 's']:
-                    change = input("Choose a valid option:\n").lower()
-
-                if change == 'a':
-                    description = ItemToPurchase.valid_input("Enter the item description: ", str, lambda x: x.strip() != "")
-                    modified_item = ItemToPurchase(item_name=name, item_description=description)
-                    ShoppingCart.modify_item(modified_item)
-                elif change == 'b':
-                    price = ItemToPurchase.valid_input("Enter the item price: ", float, lambda x: x > 0) 
-                    modified_item = ItemToPurchase(item_name=name, item_price=price)
-                    ShoppingCart.modify_item(modified_item)               
-                elif change == 'c':
-                    quantity = ItemToPurchase.valid_input("Enter the item quantity: ", int, lambda x: x > 0)
-                    modified_item = ItemToPurchase(item_name=name, item_quantity=quantity)
-                    ShoppingCart.modify_item(modified_item)                                    
-                elif option == 's':
-                    print("Changes Saved")
-                    break            
+                        change = input("\nChoose an option:\n").lower()
+                        while change not in ['a', 'b', 'c', 's']:
+                            change = input("Choose a valid option:\n").lower()
+                        if change == 'a':
+                            description = ItemToPurchase.valid_input("Enter the item description: ", str, lambda x: x.strip() != "")
+                            modified_item = ItemToPurchase(item_name=name, item_description=description)
+                            ShoppingCart.modify_item(modified_item)
+                        elif change == 'b':
+                            price = ItemToPurchase.valid_input("Enter the item price: ", float, lambda x: x > 0) 
+                            modified_item = ItemToPurchase(item_name=name, item_price=price)
+                            ShoppingCart.modify_item(modified_item)               
+                        elif change == 'c':
+                            quantity = ItemToPurchase.valid_input("Enter the item quantity: ", int, lambda x: x > 0)
+                            modified_item = ItemToPurchase(item_name=name, item_quantity=quantity)
+                            ShoppingCart.modify_item(modified_item)                                    
+                        elif option == 's':
+                            print("Changes Saved")
+                            break 
 
         elif option == 'i':
             print("* OUTPUT ITEMS' DESCRIPTIONS *")
@@ -158,7 +161,7 @@ def main():
     ShoppingCart.current_date = input("Enter the date: ")
     print("\nCustomer name: ", ShoppingCart.customer_name)
     print("Today's date: ", ShoppingCart.current_date)
-    
+
     print_menu(ShoppingCart)
 
 if __name__ == "__main__":
