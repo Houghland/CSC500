@@ -1,5 +1,5 @@
 
-#create list
+#Example of a list
 grades = [94, 90, 87, 35, 62] 
 grades.append(92) 
 grades.insert(2, 80)  
