@@ -62,7 +62,7 @@ class ShoppingCart:
         return total_cost
 
     def print_total():
-        print("{ShoppingCart.customer_name}'s Shopping Cart -", ShoppingCart.current_date)
+        print(ShoppingCart.customer_name, "'s Shopping Cart -", ShoppingCart.current_date)
         total_items = ShoppingCart.get_num_items_in_cart()
         print("Number of Items: ", total_items)
         if len(ShoppingCart.cart_items) == 0:
@@ -77,6 +77,12 @@ class ShoppingCart:
         print("\nItem Descriptions")
         for item in ShoppingCart.cart_items:
             item.print_item_description()
+
+    def valid_input(prompt, value_type, condition):
+        value = value_type(input(prompt))
+        while not condition(value):
+            value = value_type(input("Please enter a valid value: "))
+        return value
 
 # Menu
 def print_menu(ShoppingCart):
@@ -97,8 +103,8 @@ def print_menu(ShoppingCart):
 
         if option == 'a':
             print("Add Item to Cart")
-            name = input("Enter the item name:\n")
-            description = input("Enter the item description:\n")
+            name = ItemToPurchase.valid_input("Enter the item name:\n", str, lambda x: x.strip() != "")
+            description = ItemToPurchase.valid_input("Enter the item description:\n", str, lambda x: x.strip() != "")
             price = ItemToPurchase.valid_input("Enter the item price: ", float, lambda x: x > 0)
             quantity = ItemToPurchase.valid_input("Enter the item quantity: ", int, lambda x: x > 0)
             new_item = ItemToPurchase(name, price, quantity, description)
@@ -108,6 +114,7 @@ def print_menu(ShoppingCart):
             print("Remove Item from Cart: ")
             name = input("Enter item to remove:\n")
             ShoppingCart.remove_item(name)
+
         #Options to update description/price/quantity
         elif option == 'c':
             print("Change Item")
@@ -115,7 +122,7 @@ def print_menu(ShoppingCart):
             #verify if item exists - if it does, update
             for item in ShoppingCart.cart_items:
                 while item.item_name != name:
-                    name = input("Item not found. Please enter valid item:")
+                    name = input("Item not found. Please enter valid item:\n")
                 if item.item_name == name:
                     change = ""
                     while change != 's':
@@ -157,8 +164,8 @@ def print_menu(ShoppingCart):
 
 #Main 
 def main():
-    ShoppingCart.customer_name = input("Enter customer name: ")
-    ShoppingCart.current_date = input("Enter the date: ")
+    ShoppingCart.customer_name = ShoppingCart.valid_input("Enter customer name: ", str, lambda x: x.strip() != "")
+    ShoppingCart.current_date = ShoppingCart.valid_input("Enter the date: ", str, lambda x: x.strip() != "")
     print("\nCustomer name: ", ShoppingCart.customer_name)
     print("Today's date: ", ShoppingCart.current_date)
 
