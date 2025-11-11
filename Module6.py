@@ -158,8 +158,7 @@ def main():
     ShoppingCart.current_date = input("Enter the date: ")
     print("\nCustomer name: ", ShoppingCart.customer_name)
     print("Today's date: ", ShoppingCart.current_date)
-
-    #cart = ShoppingCart(customer_name, current_date)
+    
     print_menu(ShoppingCart)
 
 if __name__ == "__main__":
