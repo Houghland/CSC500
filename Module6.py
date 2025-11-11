@@ -12,7 +12,7 @@ class ItemToPurchase:
 
     def print_item_description(item):
         print(f"{item.item_name}: {item.item_description}")
-#check that input is valid/not empty
+
     def valid_input(prompt, value_type, condition):
         value = value_type(input(prompt))
         while not condition(value):
@@ -25,12 +25,6 @@ class ShoppingCart:
         cart.customer_name = customer_name
         cart.current_date = current_date
         cart.cart_items = []
-#check that input is valid/not empty
-    def valid_input(prompt, value_type, condition):
-        value = value_type(input(prompt))
-        while not condition(value):
-            value = value_type(input("Please enter a valid value: "))
-        return value
 # Add items to cart
     def add_item(cart, item):
         cart.cart_items.append(item)
@@ -92,7 +86,7 @@ def print_menu(cart):
         print("\n     ** MENU **")
         print("a - Add item to Cart")
         print("r - Remove item from Cart")
-        print("c - Change item Quantity")
+        print("c - Change item")
         print("i - Output item Descriptions")
         print("o - Output Shopping Cart")
         print("q - Quit")
@@ -104,8 +98,8 @@ def print_menu(cart):
 
         if option == 'a':
             print("Add Item to Cart")
-            name = ShoppingCart.valid_input("Enter the item name:\n", str, lambda x: x.strip() != "")
-            description = ShoppingCart.valid_input("Enter the item description:\n", str, lambda x: x.strip() != "")
+            name = input("Enter the item name:\n")
+            description = input("Enter the item description:\n")
             price = ItemToPurchase.valid_input("Enter the item price: ", float, lambda x: x > 0)
             quantity = ItemToPurchase.valid_input("Enter the item quantity: ", int, lambda x: x > 0)
             new_item = ItemToPurchase(name, price, quantity, description)
@@ -113,15 +107,39 @@ def print_menu(cart):
 
         elif option == 'r':
             print("Remove Item from Cart: ")
-            name = ShoppingCart.valid_input("Enter item to remove:\n", str, lambda x: x.strip() != "")
+            name = input("Enter item to remove:\n")
             cart.remove_item(name)
 
         elif option == 'c':
-            print("Change Item Quantity: ")
-            name = ShoppingCart.valid_input("Enter the item to change:\n", str, lambda x: x.strip() != "")
-            quantity = ItemToPurchase.valid_input("Enter the item quantity: ", int, lambda x: x > 0)
-            modified_item = ItemToPurchase(item_name=name, item_quantity=quantity)
-            cart.modify_item(modified_item)
+            print("Change Item: ")
+            name = input("Enter the item:\n")
+            change = ""
+            while change != 'q':
+                print("Which do you want to change:")
+                print("a - Description")
+                print("b - Price")
+                print("c - Quantity")
+                print("q - Quit")
+
+                change = input("\nChoose an option:\n").lower()
+
+                while change not in ['a', 'b', 'c', 'q']:
+                    change = input("Choose a valid option:\n").lower()
+
+                if change == 'a':
+                    description = ItemToPurchase.valid_input("Enter the item description: ", str, lambda x: x.strip() != "")
+                    modified_item = ItemToPurchase(item_name=name, item_description=description)
+                    cart.modify_item(modified_item)
+                elif change == 'b':
+                    price = ItemToPurchase.valid_input("Enter the item price: ", float, lambda x: x > 0) 
+                    modified_item = ItemToPurchase(item_name=name, item_price=price)
+                    cart.modify_item(modified_item)               
+                elif change == 'c':
+                    quantity = ItemToPurchase.valid_input("Enter the item quantity: ", int, lambda x: x > 0)
+                    modified_item = ItemToPurchase(item_name=name, item_quantity=quantity)
+                    cart.modify_item(modified_item)                                    
+                elif option == 'q':
+                    break            
 
         elif option == 'i':
             print("* Item Descriptions *")
@@ -134,13 +152,15 @@ def print_menu(cart):
         elif option == 'q':
             break
 
-#Start 
-#Get valid name and date
-customer_name = ShoppingCart.valid_input("Enter customer name: ", str, lambda x: x.strip() != "")
-current_date = ShoppingCart.valid_input("Enter the date: ", str, lambda x: x.strip() != "")
-print("\nCustomer name: ", customer_name)
-print("Today's date: ", current_date)
+#Main 
+def main():
+    customer_name = input("Enter customer name: ")
+    current_date = input("Enter the date: ")
+    print("\nCustomer name: ", customer_name)
+    print("Today's date: ", current_date)
 
-cart = ShoppingCart(customer_name, current_date)
-print_menu(cart)
+    cart = ShoppingCart(customer_name, current_date)
+    print_menu(cart)
 
+if __name__ == "__main__":
+   main()
