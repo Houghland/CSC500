@@ -21,9 +21,10 @@ class ItemToPurchase:
 
 #ShoppingCart Class
 class ShoppingCart:
-    customer_name = "none"
-    current_date = "January 1, 2020"
-    cart_items = []
+    def __init__(self, customer_name="none", current_date="January 1, 2020"):
+        self.customer_name = customer_name
+        self.current_date = current_date
+        self.cart_items = []
 # Add items to cart
     def add_item(ItemToPurchase):
         ShoppingCart.cart_items.append(ItemToPurchase)
@@ -91,7 +92,7 @@ def print_menu(ShoppingCart):
         print("\n     ** MENU **")
         print("a - Add item to Cart")
         print("r - Remove item from Cart")
-        print("c - Change item Quantity")
+        print("c - Change item")
         print("i - Output item Descriptions")
         print("o - Output Shopping Cart")
         print("q - Quit")
@@ -118,10 +119,12 @@ def print_menu(ShoppingCart):
         #Options to update description/price/quantity
         elif option == 'c':
             print("Change Item Quantity: ")
+            name = input("Enter the item:\n")
             name = ShoppingCart.valid_input("Enter the item to change:\n", str, lambda x: x.strip() != "")
             quantity = ItemToPurchase.valid_input("Enter the item quantity: ", int, lambda x: x > 0)
             modified_item = ItemToPurchase(item_name=name, item_quantity=quantity)
             ShoppingCart.modify_item(modified_item)
+            break 
 
         elif option == 'i':
             print("* OUTPUT ITEMS' DESCRIPTIONS *")
@@ -136,18 +139,13 @@ def print_menu(ShoppingCart):
 
 #Main 
 def main():
-    ShoppingCart.customer_name = "John Doe"
-    ShoppingCart.current_date = "February 1, 2020"
+    customer_name = ShoppingCart.valid_input("Enter customer name: ", str, lambda x: x.strip() != "")
+    current_date = ShoppingCart.valid_input("Enter the date: ", str, lambda x: x.strip() != "")
+    print("\nCustomer name: ", customer_name)
+    print("Today's date: ", current_date)
+    cart = ShoppingCart(customer_name, current_date)
+    print_menu(cart)
 
-    item1 = ItemToPurchase(item_name="Nike Romaleos", item_description="Volt color, Weightlifting shoes", item_price=189, item_quantity=2)
-    item2 = ItemToPurchase(item_name="Chocolate Chips", item_description="Semi-sweet", item_price=3, item_quantity=5)
-    item3 = ItemToPurchase(item_name="Powerbeats 2 Headphones", item_description="Bluetooth headphones", item_price=128, item_quantity=1)
-
-    ShoppingCart.add_item(item1)
-    ShoppingCart.add_item(item2)
-    ShoppingCart.add_item(item3)
-    
-    print_menu(ShoppingCart)
 
 if __name__ == "__main__":
    main()
