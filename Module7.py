@@ -29,7 +29,7 @@ for course in RoomNum:
     course = input("Please enter your course number:\n")
     while course not in RoomNum:
         course = input("That course was not found. \nPlease Enter your course number:")
-    print("\nRoom Number:",RoomNum[course], "\nInstructor ",Instructors[course], "\nMeeting at", MtgTime[course])
+    print("\nRoom Number:",RoomNum[course], "\nInstructor",Instructors[course], "\nMeeting at", MtgTime[course])
     break
 
 
