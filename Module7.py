@@ -32,17 +32,6 @@ for course in RoomNum:
     print("\nRoom Number:",RoomNum[course], "\nInstructor ",Instructors[course], "\nMeeting at", MtgTime[course])
     break
 
-for course in RoomNum:
-    lookup = input("Do you want to look up another course? (y/n)\n")
-    while lookup == 'y':
-        course = input("Please enter your course number:\n")
-        if course not in RoomNum:
-            course = input("That course was not found. \nPlease Enter your course number or 'q' to quit\n")
-            if course == 'q':
-                break
-        print("\nRoom Number:",RoomNum[course], "\nInstructor ",Instructors[course], "\nMeeting at", MtgTime[course])
-    else:
-        break
 
 
 
