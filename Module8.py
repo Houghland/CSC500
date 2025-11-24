@@ -32,57 +32,57 @@ class ShoppingCart:
             value = value_type(input("Please enter a valid value: "))
         return value
 # Add items to cart
-    def add_item(cart, item):
-        cart.cart_items.append(item)
+    def add_item(self, ItemToPurchase):
+        self.cart_items.append(ItemToPurchase)
 # Remove items from cart
-    def remove_item(cart, item_name):
+    def remove_item(self, item_name):
         exists = False
-        for item in cart.cart_items:
+        for item in self.cart_items:
             if item.item_name == item_name:
-                cart.cart_items.remove(item)
+                self.cart_items.remove(item)
                 exists = True
                 break
         if not exists:
             print("Item not found in cart. Nothing removed.")
 # Modify items in cart
-    def modify_item(cart, modified_item):
+    def modify_item(self, ItemToPurchase):
         exists = False
-        for item in cart.cart_items:
-            if item.item_name == modified_item.item_name:
-                if modified_item.item_description != "none":
-                    item.item_description = modified_item.item_description
-                if modified_item.item_price != 0:
-                    item.item_price = modified_item.item_price
-                if modified_item.item_quantity != 0:
-                    item.item_quantity = modified_item.item_quantity
+        for item in self.cart_items:
+            if item.item_name == ItemToPurchase.item_name:
+                if ItemToPurchase.item_description != "none":
+                    item.item_description = ItemToPurchase.item_description
+                if ItemToPurchase.item_price != 0:
+                    item.item_price = ItemToPurchase.item_price
+                if ItemToPurchase.item_quantity != 0:
+                    item.item_quantity = ItemToPurchase.item_quantity
                 exists = True
                 break
         if not exists:
             print("Item not found in cart. Nothing modified.")
 
-    def get_num_items_in_cart(cart):
-        total_quantity = sum(item.item_quantity for item in cart.cart_items)
+    def get_num_items_in_cart(self):
+        total_quantity = sum(item.item_quantity for item in self.cart_items)
         return total_quantity
 
-    def get_cost_of_cart(cart):
-        total_cost = sum(item.item_price * item.item_quantity for item in cart.cart_items)
+    def get_cost_of_cart(self):
+        total_cost = sum(item.item_price * item.item_quantity for item in self.cart_items)
         return total_cost
 
-    def print_total(cart):
-        print(cart.customer_name, "'s Shopping Cart -", cart.current_date)
-        total_items = cart.get_num_items_in_cart()
+    def print_total(self):
+        print(self.customer_name, "'s Shopping Cart -", self.current_date)
+        total_items = self.get_num_items_in_cart()
         print("Number of Items: ", total_items)
-        if len(cart.cart_items) == 0:
+        if len(self.cart_items) == 0:
             print("\nCart is Empty..")
         else:
-            for item in cart.cart_items:
+            for item in self.cart_items:
                 item.print_item_cost()
-        print(f"\nTotal: ${cart.get_cost_of_cart():.2f}")
+        print(f"\nTotal: ${self.get_cost_of_cart():.2f}")
 
-    def print_descriptions(cart):
-        print(cart.customer_name, "'s Shopping Cart - ", cart.current_date)
+    def print_descriptions(self):
+        print(self.customer_name, "'s Shopping Cart - ", self.current_date)
         print("Item Descriptions")
-        for item in cart.cart_items:
+        for item in self.cart_items:
             item.print_item_description()
 
 # Menu
