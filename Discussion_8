@@ -1,0 +1,26 @@
+class cat: 
+    def __init__(self, name, age): 
+        self.name = name          # Public attribute 
+        self.__age = age          # Private attribute
+ 
+    # Public method to access private attribute 
+    def get_age(self): 
+        return self.__age 
+ 
+    # Public method to modify private attribute 
+    def set_age(self, age): 
+        self.__age = age 
+
+# Creating instances (objects) 
+cat1 = cat("Carl", 7) 
+cat2 = cat("Luna", 9) 
+ 
+# Accessing public attribute 
+print(cat1.name) 
+ 
+# Unable to access cat1.__age because the attribute is private
+print(cat1.__age)
+
+# Able to access the hidden attribute only by using the method
+print(cat1.get_age()) 
+ 
